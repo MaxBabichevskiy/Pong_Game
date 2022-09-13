@@ -2,7 +2,7 @@
 
 I wrote this project for the C++ exam at IT STEP University.
 
-![photo_2022-09-13_15-15-48](https://user-images.githubusercontent.com/100165364/189898557-ed0bec81-5dac-4cbc-b1e0-540d0d151894.jpg)
+![image](https://user-images.githubusercontent.com/100165364/189905803-67a7b16c-1c0a-4824-a370-d3ef3a853c93.png)
 
 Pong is one of the early arcade video games. This is a tennis sports game using simple 2D graphics.
 
