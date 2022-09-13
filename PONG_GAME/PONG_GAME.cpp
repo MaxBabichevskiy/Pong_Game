@@ -117,12 +117,70 @@ public:
 		if (player == player1) score1++;
 		else if (player == player2) score2++;
 		ball->Reset();
-		player1->Reset;
-		player2->Reset;
+		player1->Reset();
+		player2->Reset();
+	}
+	void Draw()
+	{
+		system("cls");
+		for (int i = 0; i < width + 2; i++)
+			cout << "\xB2";
+		cout << endl;
+
+		for (int i = 0; i < height; i++)
+		{
+			for (int j = 0; j < width; j++)
+			{
+				int ballx = ball->getX();
+				int bally = ball->getY();
+				int player1x = player1->getX();
+				int player2x = player2->getX();
+				int player1y = player1->getY();
+				int player2y = player2->getY();
+
+				if (j == 0)
+					cout << "\xB2";
+
+				if (ballx == j && bally == i)
+					cout << "O"; //Мяч
+				else if (player1x == j && player1y == i)
+					cout << "\xDB"; //игрок 1
+				else if (player2x == j && player2y == i)
+					cout << "\xDB"; //игрок 2
+
+				else if (player1x == j && player1y + 1 == i)
+					cout << "\xDB"; //игрок 1
+				else if (player1x == j && player1y + 2 == i)
+					cout << "\xDB"; //игрок 1
+				else if (player1x == j && player1y + 3 == i)
+					cout << "\xDB"; //игрок 1
+
+				else if (player2x == j && player2y + 1 == i)
+					cout << "\xDB"; //игрок 2
+				else if (player2x == j && player2y + 2 == i)
+					cout << "\xDB"; //игрок 2
+				else if (player2x == j && player2y + 3 == i)
+					cout << "\xDB"; //игрок 2
+				else
+					cout << " ";
+
+				if (j == width - 1)
+					cout << "\xB2";
+			}
+			cout << endl;
+		}
+
+		for (int i = 0; i < width + 2; i++)
+			cout << "\xB2";
+		cout << endl;
+
+		cout << "Score 1: " << score1 << endl << "Score 2: " << score2 << endl;
 	}
 };
 //Main
 int main() {
 
+	cGameManager c(40, 20);
+	c.Draw();
 	return 0;
 }
