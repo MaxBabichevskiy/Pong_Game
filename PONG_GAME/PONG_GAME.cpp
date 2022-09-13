@@ -2,7 +2,6 @@
 #include<time.h>
 #include<conio.h>
 #include<Windows.h>
-
 using namespace std;
 enum eDir { STOP = 0, LEFT = 1, UPLEFT = 2, DOWNLEFT = 3, RIGHT = 4, UPRIGHT = 5, DOWNRIGHT = 6};
 //Класс мяча
@@ -170,7 +169,8 @@ public:
 		for (int i = 0; i < width + 2; i++)
 			cout << "\xB2";
 		cout << endl;
-		cout << "Score 1: " << score1 << "\t\t" << "Score 2: " << score2 << endl;
+		cout << "SCORE 1: " << score1 << " \t\t\t\t " << " SCORE 2: " << score2 << endl;
+		cout << "\t\tPRESS 'Q' to EXIT"<< endl;
 	}
 
 	void Input(){
@@ -251,9 +251,7 @@ public:
 		}
 	}
 };
-
-void intro_game() {
-	char start;
+void step() {
 	cout << "@ & @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.  " << endl;
 	cout << "/@@@@@@@@@@@@@@@%   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
 	cout << "/@@@@@@@@@@@@@@@&   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
@@ -281,8 +279,10 @@ void intro_game() {
 	cout << "/@@@@@,             &@              @@              @#             /@@@@@@   " << endl;
 	cout << "/@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   " << endl;
 	cout << "/@@@@@@@@@@@@@@@@@@@@@@@@@@@*/@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   " << endl;
-	Sleep(10);
+	Sleep(3000);
 	system("cls");
+}
+void pong() {
 	cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
 	cout << "##((/**@@@@@@@@@@@@& ,@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@..@@@@@@" << endl;
 	cout << "@   &%%    @@@@           *@@@@    ,@@@@   @@@@,          @@" << endl;
@@ -291,28 +291,25 @@ void intro_game() {
 	cout << "@   @@@@@@@@@@   @@@@@@@(   @@@   @@@     /@@@    @@@@    @@" << endl;
 	cout << "@   @@@@@@@@@@@           @@@@@   @@@@@   /@@@@(         @@@" << endl;
 	cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
-	
 	cout << "@   Left Player				Right Player	   @" << endl;
 	cout << "@   UP   - W			        UP   - I	   @" << endl;
 	cout << "@   DOWN - S			        DOWN - K	   @" << endl;
 	cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
-	cout << "@   		  START GAME - write 'w'	           @" << endl;
+	cout << "@   		  START GAME - write 's'	           @" << endl;
 	cout << "@   		  EXIT       - write 'q'	           @" << endl;
 	cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
 	cout << "           	      	     ";
+}
+void mainGame() {
+	char start;
+	step();
+	pong();
 	cin >> start;
-	char current = 'w';
-	if (current == start) { cGameManager c(40, 20); c.Run(); }
-
-	
+	char current = 's';
+	if (current == start) { cGameManager c(50, 20); c.Run(); }
 }
 //Main
 int main(){
-	
-	
-	intro_game();
-	/*cGameManager c(40, 20);
-	c.Run();*/
-
+	mainGame();
 	return 0;
 }
