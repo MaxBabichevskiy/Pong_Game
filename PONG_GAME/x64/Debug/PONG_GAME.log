@@ -1,3 +1,3 @@
 ﻿  PONG_GAME.cpp
-C:\Users\Maxim\source\repos\PONG_GAME\PONG_GAME\PONG_GAME.cpp(105,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\Maxim\source\repos\PONG_GAME\PONG_GAME\PONG_GAME.cpp(104,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   PONG_GAME.vcxproj -> C:\Users\Maxim\source\repos\PONG_GAME\x64\Debug\PONG_GAME.exe

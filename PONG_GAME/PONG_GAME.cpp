@@ -3,15 +3,15 @@
 #include<conio.h>
 #include<Windows.h>
 using namespace std;
-enum eDir { STOP = 0, LEFT = 1, UPLEFT = 2, DOWNLEFT = 3, RIGHT = 4, UPRIGHT = 5, DOWNRIGHT = 6};
+enum Dir { STOP = 0, LEFT = 1, UPLEFT = 2, DOWNLEFT = 3, RIGHT = 4, UPRIGHT = 5, DOWNRIGHT = 6};
 //Класс мяча
-class cBall {
+class Ball {
 	int x, y;
 	int originalX, originalY;
-	eDir direction;
+	Dir direction;
 public:
 	//Позиция мяча
-	cBall(int posX, int posY) {
+	Ball(int posX, int posY) {
 		originalX = posX;
 		originalY = posY;
 		x = posX; y = posY;
@@ -23,9 +23,9 @@ public:
 		direction = STOP;
 	}
 	//Изменение направления 
-	void changeDirection(eDir d) {direction = d;}
+	void changeDirection(Dir d) {direction = d;}
 	//Рандомное направление
-	void randomDirection() { direction = (eDir)((rand() % 6) + 1);}
+	void randomDirection() { direction = (Dir)((rand() % 6) + 1);}
 	//Функция для перемещения
 	void Move() {
 		switch (direction)
@@ -58,20 +58,20 @@ public:
 	inline int getX() { return x; }
 	inline int getY() { return y; }
 	//Получение текущего направления
-	inline eDir getDirection() { return direction; }
+	inline Dir getDirection() { return direction; }
 	//Вывод обьекта через cout
-	friend ostream& operator <<(ostream& o, cBall c){
+	friend ostream& operator <<(ostream& o, Ball c){
 		o << "Ball [" << c.x << "," << c.y << "][" << c.direction << "]";
 		return o;
 	}
 };
 //Класс плитки
-class cPaddle{
+class Paddle{
 	int x, y;
 	int originalX, originalY;
 public:
-	cPaddle() { x = y = 0; } //Текущее положение равно нулю
-	cPaddle(int posX, int posY) {
+	Paddle() { x = y = 0; } //Текущее положение равно нулю
+	Paddle(int posX, int posY) {
 		originalX = posX;
 		originalY = posY;
 		x = posX;
@@ -85,23 +85,22 @@ public:
 	//Передвижение плитки
 	inline void moveUp() { y--; }
 	inline void moveDown() { y++; }
-	//Вывод обьекта через cout
-	friend ostream& operator <<(ostream& o, cPaddle c){
+	friend ostream& operator <<(ostream& o, Paddle c){
 		o << "Paddle [" << c.x << "," << c.y << "]";
 		return o;
 	}
 };
 //Менеджер
-class cGameManager {
+class GameManager {
 	int width, height;
 	int score1, score2;
 	char up1, down1, up2, down2;
 	bool quit;
-	cBall* ball;
-	cPaddle* player1;
-	cPaddle* player2;
+	Ball* ball;
+	Paddle* player1;
+	Paddle* player2;
 public:
-	cGameManager(int w,int h) {
+	GameManager(int w,int h) {
 		srand(time(NULL));
 		quit = false;
 		up1 = 'w'; up2 = 'i';
@@ -109,12 +108,12 @@ public:
 		score1 = score2 = 0;
 		width = w; height = h;
 		//Создание игроков и мяча
-		ball = new cBall(w / 2, h / 2);
-		player1 = new cPaddle(1, h / 2 - 3);
-		player2 = new cPaddle(w - 2, h / 2 - 3);
+		ball = new Ball(w / 2, h / 2);
+		player1 = new Paddle(1, h / 2 - 3);
+		player2 = new Paddle(w - 2, h / 2 - 3);
 	}
-	~cGameManager() { delete ball, player1, player2; }
-	void ScoreUp(cPaddle* player) {
+	~GameManager() { delete ball, player1, player2; }
+	void ScoreUp(Paddle* player) {
 		if (player == player1) score1++;
 		else if (player == player2) score2++;
 		ball->Reset();
@@ -218,13 +217,13 @@ public:
 		for (int i = 0; i < 4; i++)
 			if (ballx == player1x + 1)
 				if (bally == player1y + i)
-					ball->changeDirection((eDir)((rand() % 3) + 4));
+					ball->changeDirection((Dir)((rand() % 3) + 4));
 
 		//Правая плитка
 		for (int i = 0; i < 4; i++)
 			if (ballx == player2x - 1)
 				if (bally == player2y + i)
-					ball->changeDirection((eDir)((rand() % 3) + 1));
+					ball->changeDirection((Dir)((rand() % 3) + 1));
 
 		//Нижняя стена
 		if (bally == height - 1)
@@ -365,7 +364,7 @@ void mainGame() {
 	char start = 's';
 	introPicture();
 	char current = _getch();
-	if (current == start) { cGameManager c(50, 20); c.Run(); }
+	if (current == start) { GameManager c(50, 20); c.Run(); }
 }
 //Main
 int main(){
